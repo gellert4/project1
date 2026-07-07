@@ -1,0 +1,83 @@
+CASE FILE #001 - THE MIDNIGHT MURDER
+
+========================================
+LOCATION: Baskerville Manor
+DATE: January 15, 2024
+DETECTIVE: Holmes
+========================================
+
+WITNESS STATEMENT: Mrs. Hudson (Housekeeper)
+Interview Date: January 15, 2024, 9:00 AM
+
+Q: Where were you on the night of the murder?
+A: I was in my quarters reading a book. I retired at 10 PM and didn't leave my room until morning.
+
+Q: Did you hear anything unusual?
+A: Yes, I heard a loud noise around 11:30 PM. Sounded like something fell in the main study.
+
+Q: Who do you suspect?
+A: The butler has been acting strangely lately. He's been arguing with the deceased about unpaid wages.
+
+========================================
+
+WITNESS STATEMENT: The Butler (Edward Watson)
+Interview Date: January 15, 2024, 10:30 AM
+
+Q: Where were you at the time of the murder (11:30 PM)?
+A: I was asleep in my quarters. I had worked late that evening and went to bed at 10 PM.
+
+Q: Did you have any conflicts with the deceased?
+A: Yes, sir. He owed me three months' wages. I was frustrated, but I would never harm him.
+
+Q: Can anyone verify your whereabouts?
+A: No, sir. I was alone in my room.
+
+========================================
+
+WITNESS STATEMENT: The Gardener (James Murphy)
+Interview Date: January 15, 2024, 11:00 AM
+
+Q: Where were you at the time of the murder?
+A: I was leaving the manor. I had worked late on the grounds. I left through the east gate around 11:15 PM.
+
+Q: Did you see anyone leaving the manor?
+A: I saw someone running from the study window around 11:25 PM. It was dark, but the figure moved quickly.
+
+Q: Could you identify the person?
+A: No, too dark. But they wore a dark coat and hat.
+
+========================================
+
+PHYSICAL EVIDENCE
+
+- Victim found in study at 6:00 AM
+- Weapon: Candlestick (silver, from the study)
+- Window locks: Study window was unlocked
+- Footprints: Muddy footprints leading from study to east exit
+- No signs of forced entry
+
+========================================
+
+SUSPECT PROFILE 1: The Butler (Edward Watson)
+- Age: 52
+- Employment: 15 years at the manor
+- Motive: Unpaid wages (3 months owed)
+- Alibi: Unconfirmed (asleep in quarters)
+- Evidence: None found in room, but had access to all areas
+
+========================================
+
+SUSPECT PROFILE 2: The Gardener (James Murphy)
+- Age: 35
+- Employment: 5 years
+- Motive: Unknown (no conflicts known)
+- Alibi: Says he was leaving at 11:15 PM
+- Evidence: Saw someone leaving the study, muddy footprints match his shoes
+
+========================================
+
+INVESTIGATOR NOTES
+
+The case is complex. While the gardener claims to have seen someone fleeing, his muddy footprints are found at the scene. The butler has a clear motive but an unverified alibi. Mrs. Hudson's account of hearing noise at 11:30 PM correlates with both the gardener's timeline and the estimated time of death.
+
+Need to verify: Butler's whereabouts, Gardener's exact departure time, and timeline of events more carefully.
