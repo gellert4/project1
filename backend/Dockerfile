@@ -6,9 +6,13 @@ COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 COPY backend/app ./app
+COPY backend/config.py .
 
 # Expose API port
 EXPOSE 5000
 
+# Create data directory
+RUN mkdir -p data
+
 # Run the Flask app
-CMD ["python", "-m", "flask", "run", "--host=0.0.0.0"]
+CMD ["python", "app/main.py"]

@@ -5,13 +5,15 @@ from flask import Flask, jsonify, request
 from werkzeug.utils import secure_filename
 import os
 from rag.document_handler import DocumentHandler
+from rag.query_engine import QueryEngine
 from config import Config
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024  # 50MB max upload
 
-# Initialize document handler
+# Initialize handlers
 doc_handler = DocumentHandler()
+query_engine = QueryEngine(doc_handler.get_vector_store())
 
 @app.route('/health', methods=['GET'])
 def health():
@@ -39,6 +41,8 @@ def upload_document():
         result = doc_handler.add_document(filename, file_content)
         
         if result['success']:
+            # Update query engine with new vector store
+            query_engine.vector_store = doc_handler.get_vector_store()
             return jsonify(result), 200
         else:
             return jsonify(result), 500
@@ -55,8 +59,21 @@ def list_documents():
 @app.route('/api/query', methods=['POST'])
 def query():
     """Ask a question about case files"""
-    # TODO: Implement query endpoint
-    return jsonify({"message": "TODO"}), 501
+    data = request.get_json()
+    
+    if not data or 'question' not in data:
+        return jsonify({"error": "No question provided"}), 400
+    
+    question = data['question'].strip()
+    
+    if not question:
+        return jsonify({"error": "Question cannot be empty"}), 400
+    
+    try:
+        result = query_engine.query(question)
+        return jsonify(result), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.errorhandler(413)
 def request_entity_too_large(error):
