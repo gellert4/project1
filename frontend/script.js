@@ -68,13 +68,41 @@ async function askQuestion() {
         const result = await response.json();
         
         if (response.ok) {
+            // Parse answer and sources
             let answerText = result.answer || 'No answer found';
+            let sources = result.sources || [];
             
-            if (result.sources && result.sources.length > 0) {
-                answerText += `\n\n📚 Sources: ${result.sources.join(', ')}`;
+            // Clean up the answer - remove "Based on available evidence:" prefix and source info
+            answerText = answerText.replace(/Based on available evidence:\s*/i, '')
+                                  .replace(/📚 Sources:.*$/i, '')
+                                  .trim();
+            
+            // Extract sources from answer if needed
+            const sourceMatch = answerText.match(/Evidence \d+.*?from\s+([^:]+):/g);
+            if (sourceMatch) {
+                sourceMatch.forEach(match => {
+                    const file = match.match(/from\s+([^:]+):/)[1];
+                    if (!sources.includes(file)) {
+                        sources.push(file);
+                    }
+                });
+                // Clean evidence markers from answer
+                answerText = answerText.replace(/Evidence \d+.*?from [^:]+:\s*/g, '');
             }
             
-            answerDiv.textContent = answerText;
+            // Build formatted response
+            let html = `<div class="answer-content">${answerText}</div>`;
+            
+            if (sources && sources.length > 0) {
+                html += `<div class="sources-box">
+                    <strong>📚 Sources:</strong>
+                    <ul>
+                        ${sources.map(s => `<li>${s}</li>`).join('')}
+                    </ul>
+                </div>`;
+            }
+            
+            answerDiv.innerHTML = html;
             answerDiv.style.color = '#333';
         } else {
             answerDiv.textContent = `Error: ${result.error || 'Unknown error'}`;
