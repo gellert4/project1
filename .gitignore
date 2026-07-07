@@ -30,3 +30,6 @@ wheels/
 .DS_Store
 node_modules/
 *.log
+data/
+.cache/
+
