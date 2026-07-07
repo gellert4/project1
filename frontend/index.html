@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sherlock - Case File Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🔍 Sherlock</h1>
+            <p>Detective Case File Assistant</p>
+        </header>
+
+        <main>
+            <!-- Upload section -->
+            <section class="upload-section">
+                <h2>Upload Case File</h2>
+                <input type="file" id="fileInput" accept=".pdf,.txt,.docx">
+                <button id="uploadBtn">Upload</button>
+                <div id="uploadStatus"></div>
+            </section>
+
+            <!-- Query section -->
+            <section class="query-section">
+                <h2>Ask a Question</h2>
+                <textarea id="questionInput" placeholder="What was Mrs. Hudson's alibi?"></textarea>
+                <button id="queryBtn">Search Evidence</button>
+                <div id="answer"></div>
+            </section>
+
+            <!-- Documents list -->
+            <section class="documents-section">
+                <h2>Case Files</h2>
+                <ul id="documentsList"></ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
