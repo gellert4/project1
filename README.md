@@ -1,171 +1,85 @@
-# Sherlock - Case File AI Assistant
+# Sherlock
 
-A Retrieval Augmented Generation (RAG) system that allows detectives to upload case files and ask questions about suspects, alibis, and clues. Built with Python, Flask, FAISS, and Google AI.
+Sherlock is a small Retrieval Augmented Generation (RAG) application for uploading PDF or TXT case files and asking questions about their contents.
+
+The system retrieves relevant document chunks from a FAISS vector store and sends only that evidence to Google Gemini. If the evidence is insufficient, the expected response is:
+
+> I don't have enough evidence to answer that.
 
 ## Features
 
-- 📤 Upload case files (PDF or TXT)
-- 🔍 Ask natural language questions
-- 🎯 RAG-based answers (no hallucination)
-- 🐳 Docker containerized
-- 🎨 Modern web interface
+- Upload PDF and TXT case files
+- Ask natural-language questions
+- Semantic retrieval with Sentence Transformers and FAISS
+- Evidence-grounded answers with Google Gemini
+- REST API built with Flask
+- Simple browser frontend
+- Docker and Docker Compose support
 
-## Quick Start with Docker
-
-### Prerequisites
-
-- Docker and Docker Compose installed
-- Google AI API key (free from [Google AI Studio](https://makersuite.google.com/app/apikey))
-
-### Setup
-
-1. Clone and navigate to repository
-```bash
-git clone https://github.com/gellert4/project1.git
-cd project1
-```
-
-2. Create `.env` file with your API key
-```bash
-cp backend/.env.example backend/.env
-# Edit backend/.env and add your GOOGLE_API_KEY
-```
-
-3. Build and run with Docker Compose
-```bash
-docker-compose up --build
-```
-
-4. Open browser to http://localhost:3000
-
-## Local Development
-
-### Prerequisites
+## Tech stack
 
 - Python 3.10+
-- pip and venv
+- Flask
+- LangChain
+- Sentence Transformers
+- FAISS
+- Google Gen AI SDK
+- HTML, CSS and JavaScript
+- Nginx
+- Docker Compose
 
-### Setup
+## Setup
+
+### Docker
+
+Create `backend/.env`:
+
+```env
+GOOGLE_API_KEY=your_google_ai_api_key
+FLASK_ENV=development
+DEBUG=True
+```
+
+Then run:
 
 ```bash
-# Create virtual environment
+docker compose up --build
+```
+
+Open `http://localhost:3000`.
+
+### Local development
+
+```powershell
 python -m venv venv
-.\venv\Scripts\activate  # Windows
-source venv/bin/activate  # Mac/Linux
-
-# Install dependencies
-pip install -r backend/requirements.txt
-
-# Create .env with GOOGLE_API_KEY
-cp backend/.env.example backend/.env
-```
-
-### Run Backend
-
-```bash
+.\venv\Scripts\Activate.ps1
+pip install -r backend\requirements.txt
 cd backend
-python app/main.py
+python run.py
 ```
 
-Backend runs on http://localhost:5000
+In a second terminal:
 
-### Run Frontend
-
-```bash
-# In another terminal
+```powershell
 cd frontend
-# Serve static files (use any server, e.g., Python's built-in)
 python -m http.server 3000
 ```
 
-Frontend runs on http://localhost:3000
+## API
 
-## Project Structure
-
-```
-sherlock/
-├── backend/                 # Python API service
-│   ├── app/
-│   │   ├── main.py         # Flask API endpoints
-│   │   └── rag/
-│   │       ├── document_handler.py  # File upload & embedding
-│   │       └── query_engine.py      # RAG query logic
-│   ├── config.py
-│   ├── requirements.txt
-│   └── Dockerfile
-├── frontend/                # Web interface
-│   ├── index.html
-│   ├── script.js
-│   └── style.css
-├── nginx.conf              # Nginx reverse proxy config
-├── docker-compose.yml
-└── README.md
-```
-
-## API Endpoints
-
-### Upload Document
-```
-POST /api/documents
-Content-Type: multipart/form-data
-Body: file (PDF or TXT)
-
-Response: { "success": true, "filename": "...", "chunks": 10 }
-```
-
-### List Documents
-```
-GET /api/documents
-
-Response: { "documents": ["case1.txt", "case2.pdf"] }
-```
-
-### Query
-```
-POST /api/query
-Content-Type: application/json
-Body: { "question": "What was Mrs. Hudson's alibi?" }
-
-Response: {
-  "answer": "...",
-  "sources": ["case1.txt"],
-  "confidence": 0.85
-}
-```
-
-## How RAG Works
-
-1. **Document Upload** → Extract text, split into chunks
-2. **Embedding** → Create vector embeddings using Sentence Transformers
-3. **Store** → Save in FAISS vector database
-4. **Query** → Find similar chunks using semantic search
-5. **Generate** → LLM creates answer from context (no hallucination)
+- `POST /api/documents`
+- `GET /api/documents`
+- `POST /api/query`
+- `GET /health`
 
 ## Testing
 
 ```bash
-# Test document handler locally
-python test_document_handler.py
+pytest -v
 ```
 
-## Environment Variables
+## Notes
 
-- `GOOGLE_API_KEY` - Your Google AI API key
-- `FLASK_ENV` - development or production
-- `DEBUG` - True/False
-
-## Cost
-
-Free tier usage:
-- Google AI: 60 requests/minute (free)
-- No GPU required
-- ~100MB disk per 10k case documents
-
-## Next Steps
-
-- [ ] Add support for .docx files
-- [ ] Implement user authentication
-- [ ] Add case file metadata/tagging
-- [ ] Implement multi-language support
-- [ ] Add test suite
-
+- Do not commit `.env`, uploaded files or generated FAISS data.
+- Gemini free-tier availability may occasionally cause temporary errors.
+- This is a coding-test prototype, not a production deployment.

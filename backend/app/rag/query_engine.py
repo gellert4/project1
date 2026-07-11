@@ -239,7 +239,10 @@ Answer:
                         contents=prompt,
                         config=types.GenerateContentConfig(
                             temperature=0.0,
-                            max_output_tokens=250,
+                            max_output_tokens=1024,
+                            thinking_config=types.ThinkingConfig(
+                                thinking_budget=0
+                            ),
                         ),
                     )
                 )
