@@ -83,3 +83,16 @@ pytest -v
 - Do not commit `.env`, uploaded files or generated FAISS data.
 - Gemini free-tier availability may occasionally cause temporary errors.
 - This is a coding-test prototype, not a production deployment.
+
+## Configuration
+
+Create a `.env` file inside the `backend` directory:
+
+```env
+GOOGLE_API_KEY=YOUR_GOOGLE_AI_API_KEY
+FLASK_ENV=development
+DEBUG=True
+```
+
+A free API key can be obtained from Google AI Studio:
+https://aistudio.google.com/app/apikey
